@@ -1,1 +1,6 @@
 venv/
+notebooks/
+data/EDA.ipynb
+data/
+.ipynb_checkpoints/
+__pycache__/
