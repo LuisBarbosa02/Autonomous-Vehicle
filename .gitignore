@@ -1,6 +1,6 @@
 venv/
 notebooks/
 data/EDA.ipynb
-data/
+/data/
 .ipynb_checkpoints/
 __pycache__/
