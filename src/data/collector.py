@@ -7,10 +7,11 @@ import cv2
 from .actors import spawn_vehicle, attach_camera, attach_collision_sensor
 
 # Data collector
-def data_collector(world, condition, image_dir, start_index, frames_per_condition):
+def data_collector(world, traffic_manager, condition, image_dir, start_index, frames_per_condition):
     """
     Collect data deterministically in synchronous mode.
     :param world: Carla world
+    :param traffic_manager: Manage traffic from Carla environment
     :param condition: Weather condition dictionary
     :param image_dir: Directory to save images
     :param start_index: Starting image index
@@ -38,8 +39,15 @@ def data_collector(world, condition, image_dir, start_index, frames_per_conditio
 
         # Spawn vehicle
         vehicle = spawn_vehicle(world)
-        vehicle.set_autopilot(True)
-        for _ in range(5): # Stabilize autopilot
+        vehicle.set_autopilot(True, traffic_manager.get_port())
+
+        # Improve drive stability
+        traffic_manager.vehicle_percentage_speed_difference(vehicle, 30.0) # Vehicle speed is x% less than max road speed
+        traffic_manager.auto_lane_change(vehicle, False) # Disable lane changes
+        traffic_manager.distance_to_leading_vehicle(vehicle, 5.0) # Set the distance from other vehicler to main vehicle
+        
+        # Stabilize autopilot
+        for _ in range(5):
             world.tick()
 
         # Attach sensors to vehicle
@@ -86,7 +94,7 @@ def data_collector(world, condition, image_dir, start_index, frames_per_conditio
                 # Convert raw image
                 img = np.frombuffer(image.raw_data, dtype=np.uint8)
                 img = img.reshape((image.height, image.width, 4))
-                img = img[:, :, :3]
+                img = cv2.cvtColor(img, cv2.COLOR_BGRA2BGR)
 
                 # Get steering value
                 steering = vehicle.get_control().steer

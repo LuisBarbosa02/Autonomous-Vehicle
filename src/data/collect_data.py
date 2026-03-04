@@ -2,6 +2,8 @@
 from ..config import WEATHER_CONFIG, FRAMES_PER_MODE
 from .carla_client import connect_to_carla
 from .collector import data_collector
+from .balance_steering import balance_steering
+from .augment_data import augment_data
 
 import argparse
 import os
@@ -51,13 +53,14 @@ def main():
     current_index = start_index
 
     # Load world
-    world, original_settings = connect_to_carla()
+    world, traffic_manager, original_settings = connect_to_carla()
 
     # Run data collector
     try:
         for condition in WEATHER_CONFIG:
             rows, current_index = data_collector(
                 world,
+                traffic_manager,
                 condition,
                 IMAGE_DIR,
                 current_index,
@@ -69,21 +72,31 @@ def main():
         world.apply_settings(original_settings)
         print("\nCleaning up...")
 
-    # Save the data
+    # Load all data into dataframe
     df = pd.DataFrame(
         all_rows,
         columns=["image", "steering", "timestamp", "condition"]
     )
 
+    # Combining data if previously existent
     if dataframe is not None:
         combined_df = pd.concat([dataframe, df], ignore_index=True)
     else:
         combined_df = df
+
+    # Apply changes to training set
+    if MODE == "train":
+        # Balancing the dataset steering
+        combined_df = balance_steering(combined_df)
     
+        # Augmenting the data
+        combined_df = augment_data(combined_df, IMAGE_DIR)
+    
+    # Save the data
     combined_df.to_csv(LABEL_FILE, index=False)
     
     print("\nDataset collection complete.")
-    print(f"Total samples added: {len(df)}")
+    print(f"Final dataset size: {len(combined_df)}")
 
 # Run
 if __name__ == '__main__':
