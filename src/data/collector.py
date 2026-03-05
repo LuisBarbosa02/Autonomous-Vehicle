@@ -5,6 +5,7 @@ import numpy as np
 import os
 import cv2
 from .actors import spawn_vehicle, attach_camera, attach_collision_sensor
+from .steering import classify_steering
 
 # Data collector
 def data_collector(world, traffic_manager, condition, image_dir, start_index, frames_per_condition):
@@ -20,12 +21,25 @@ def data_collector(world, traffic_manager, condition, image_dir, start_index, fr
     """
     print(f"\nCollecting condition: {condition['name']}")
 
+    # Configure steering objectives
+    steer_targets = {
+        "near_zero": int(frames_per_condition * 0.40),
+        "mild": int(frames_per_condition * 0.45),
+        "strong": int(frames_per_condition * 0.15)
+    }
+
+    steer_counts = {
+        "near_zero": 0,
+        "mild": 0,
+        "strong": 0
+    }
+
     # Handle data
     collected_rows = []
     current_index = start_index
 
     # Collect data
-    while len(collected_rows) < frames_per_condition:
+    while any(steer_counts[k] < steer_targets[k] for k in steer_targets):
         print(f"\nStarting attempt for {condition['name']}")
 
         # Apply weather
@@ -67,7 +81,7 @@ def data_collector(world, traffic_manager, condition, image_dir, start_index, fr
         collision_happened = False
 
         try:
-            while len(attempt_rows) + len(collected_rows) < frames_per_condition:
+            while any(steer_counts[k] < steer_targets[k] for k in steer_targets):
                 # Advance simulation by one step
                 world.tick()
 
@@ -99,6 +113,13 @@ def data_collector(world, traffic_manager, condition, image_dir, start_index, fr
                 # Get steering value
                 steering = vehicle.get_control().steer
 
+                # Classify steering
+                steer_class = classify_steering(steering)
+
+                # Skip frame if steer quota reached
+                if steer_counts[steer_class] >= steer_targets[steer_class]:
+                    continue
+
                 # Save image
                 filename = f"img_{current_index:08d}.jpg"
                 filepath = os.path.join(image_dir, filename)
@@ -113,7 +134,8 @@ def data_collector(world, traffic_manager, condition, image_dir, start_index, fr
                     condition["name"]
                 ])
 
-                # Increase current index
+                # Increase steering counts and index
+                steer_counts[steer_class] += 1
                 current_index += 1
 
                 # Show current frame processed
@@ -162,6 +184,10 @@ def data_collector(world, traffic_manager, condition, image_dir, start_index, fr
 
             # Reset index rollback
             current_index -= len(attempt_rows)
+
+            for row in attempt_rows:
+                steer_class = classify_steering(row[1])
+                steer_counts[steer_class] -= 1
 
     print(f"\nFinished condition: {condition['name']}")
 

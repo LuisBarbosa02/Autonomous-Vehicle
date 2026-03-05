@@ -11,8 +11,8 @@ FPS = 10
 FIXED_DELTA_SECONDS = 1.0 / FPS
 
 FRAMES_PER_MODE = {
-    "train": 3000,
-    "test": 1000
+    "train": 500,
+    "test": 2000
 }
 
 WEATHER_CONFIG = [ # Environment conditions
