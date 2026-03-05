@@ -16,19 +16,34 @@ def augment_data(df, image_dir):
 
     # Augmenting data
     for _, row in df.iterrows():
+        # Do not augment already augmented images
+        if row.image.startswith("flip_"):
+            continue
+        
         # Augment turns
         if abs(row.steering) > 0.2:
             # Get image
+            new_name = "flip_" + row.image
             img_path = os.path.join(image_dir, row.image)
+
+            # Do not duplicate augmentation
+            if os.path.exists(os.path.join(image_dir, new_name)):
+                continue
+            
+            # Read image
             img = cv2.imread(img_path)
+
+            # Safety check for image
+            if img is None:
+                continue
 
             # Flip image
             flipped_img = cv2.flip(img, 1)
 
             # Save new image
-            new_name = "flip_" + row.image
             cv2.imwrite(os.path.join(image_dir, new_name), flipped_img)
 
+            # # Save conditions into list
             augmented_rows.append([
                 new_name,
                 -row.steering,
@@ -36,7 +51,7 @@ def augment_data(df, image_dir):
                 row.condition
             ])
 
-    # Save conditions
+    # Save conditions into dataframe
     augmented_df = pd.DataFrame(
         augmented_rows,
         columns=["image", "steering", "timestamp", "condition"]

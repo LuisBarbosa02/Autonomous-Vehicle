@@ -2,7 +2,6 @@
 from ..config import WEATHER_CONFIG, FRAMES_PER_MODE
 from .carla_client import connect_to_carla
 from .collector import data_collector
-from .balance_steering import balance_steering
 from .augment_data import augment_data
 
 import argparse
@@ -78,19 +77,16 @@ def main():
         columns=["image", "steering", "timestamp", "condition"]
     )
 
+    # Apply changes to training set
+    if MODE == "train":    
+        # Augmenting the data
+        df = augment_data(df, IMAGE_DIR)
+
     # Combining data if previously existent
     if dataframe is not None:
         combined_df = pd.concat([dataframe, df], ignore_index=True)
     else:
         combined_df = df
-
-    # Apply changes to training set
-    if MODE == "train":
-        # Balancing the dataset steering
-        combined_df = balance_steering(combined_df)
-    
-        # Augmenting the data
-        combined_df = augment_data(combined_df, IMAGE_DIR)
     
     # Save the data
     combined_df.to_csv(LABEL_FILE, index=False)
