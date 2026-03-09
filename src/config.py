@@ -11,7 +11,7 @@ FPS = 10
 FIXED_DELTA_SECONDS = 1.0 / FPS
 
 FRAMES_PER_MODE = {
-    "train": 500,
+    "train": 8000,
     "test": 2000
 }
 
