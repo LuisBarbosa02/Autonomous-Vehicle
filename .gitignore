@@ -5,3 +5,4 @@ data/EDA.ipynb
 .ipynb_checkpoints/
 __pycache__/
 src/data/dataset_code.ipynb
+src/train/train_code.ipynb
