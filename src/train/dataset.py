@@ -38,7 +38,7 @@ def build_dataset(image_paths, steering, training=True):
 
     # Shuffle dataset
     if training:
-        dataset = dataset.shuffle(10000)
+        dataset = dataset.shuffle(50000)
 
     # Parse dataset
     dataset = dataset.map(parse_image, num_parallel_calls=AUTOTUNE)
