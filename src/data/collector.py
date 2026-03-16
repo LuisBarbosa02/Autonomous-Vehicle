@@ -56,8 +56,8 @@ def data_collector(world, traffic_manager, condition, image_dir, start_index, fr
         vehicle.set_autopilot(True, traffic_manager.get_port())
 
         # Improve drive stability
-        traffic_manager.vehicle_percentage_speed_difference(vehicle, -20.0) # Vehicle speed is x% of max road speed
-        traffic_manager.auto_lane_change(vehicle, True) # Lane changes
+        traffic_manager.vehicle_percentage_speed_difference(vehicle, -50.0) # Vehicle speed is x% of max road speed
+        traffic_manager.auto_lane_change(vehicle, False) # Lane changes
         traffic_manager.distance_to_leading_vehicle(vehicle, 5.0) # Set the distance from other vehicler to main vehicle
         
         # Stabilize autopilot
