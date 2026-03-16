@@ -15,6 +15,6 @@ class Perception:
         """
         Predict steering angle from the input frame
         """
-        frame = frame.astype(np.float32) / 255.0
+        frame = frame.astype(np.float32)
         frame = np.expand_dims(frame, axis=0)
         return float(self.model(frame, training=False)[0][0])

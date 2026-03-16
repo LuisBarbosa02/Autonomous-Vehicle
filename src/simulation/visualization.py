@@ -10,7 +10,8 @@ def transform_image(frame, lateral_offset):
     """
     h, w = frame.shape[:2]
 
-    shift_pixels = int(np.clip(lateral_offset * PIXELS_PER_METER, -w//4, w//4))
+    shift_pixels = int(lateral_offset * PIXELS_PER_METER)
+    shift_pixels = max(min(shift_pixels, w - 1), -(w - 1))
     M = np.float32([[1, 0, shift_pixels],
                     [0, 1, 0]])
 

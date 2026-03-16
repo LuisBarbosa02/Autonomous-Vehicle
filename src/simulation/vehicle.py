@@ -15,3 +15,4 @@ class VehicleState:
         Update the vehicle's state
         """
         self.x += SPEED * np.sin(steering) * DT
+        self.x = np.clip(self.x, -3, 3)
