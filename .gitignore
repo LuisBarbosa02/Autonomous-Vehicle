@@ -6,3 +6,4 @@ data/EDA.ipynb
 __pycache__/
 src/data/dataset_code.ipynb
 src/train/train_code.ipynb
+src/simulation/simulator.ipynb
