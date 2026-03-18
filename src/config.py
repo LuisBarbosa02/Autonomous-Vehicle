@@ -35,7 +35,7 @@ VALIDATION_SPLIT = 0.2
 
 # Simulation configuration
 MODEL_PATH = "models/final_model.keras"
-VIDEO_PATH = "videos/night drive 4.mp4"
+VIDEO_PATH = "videos/night drive 2.mp4"
 
 PIXELS_PER_METER = 50
 DT = 1 / 60
