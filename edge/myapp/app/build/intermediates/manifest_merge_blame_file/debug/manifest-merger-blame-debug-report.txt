@@ -1,0 +1,100 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="org.tensorflow.lite.codelabs.digitclassifier"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+7-->C:\dev\Android\projects\myapp\app\src\main\AndroidManifest.xml:6:3-15
+8        android:minSdkVersion="21"
+8-->C:\dev\Android\projects\myapp\app\src\main\AndroidManifest.xml:6:3-15
+9        android:targetSdkVersion="34" />
+9-->C:\dev\Android\projects\myapp\app\src\main\AndroidManifest.xml:6:3-15
+10
+11    <uses-permission android:name="android.permission.CAMERA" />
+11-->C:\dev\Android\projects\myapp\app\src\main\AndroidManifest.xml:8:3-62
+11-->C:\dev\Android\projects\myapp\app\src\main\AndroidManifest.xml:8:20-60
+12
+13    <queries>
+13-->[androidx.camera:camera-extensions:1.3.0] C:\Users\Luis Barbosa\.gradle\caches\transforms-3\85ad8dd81f3a3ee516e683551c4b2519\transformed\jetified-camera-extensions-1.3.0\AndroidManifest.xml:22:5-26:15
+14        <intent>
+14-->[androidx.camera:camera-extensions:1.3.0] C:\Users\Luis Barbosa\.gradle\caches\transforms-3\85ad8dd81f3a3ee516e683551c4b2519\transformed\jetified-camera-extensions-1.3.0\AndroidManifest.xml:23:9-25:18
+15            <action android:name="androidx.camera.extensions.action.VENDOR_ACTION" />
+15-->[androidx.camera:camera-extensions:1.3.0] C:\Users\Luis Barbosa\.gradle\caches\transforms-3\85ad8dd81f3a3ee516e683551c4b2519\transformed\jetified-camera-extensions-1.3.0\AndroidManifest.xml:24:13-86
+15-->[androidx.camera:camera-extensions:1.3.0] C:\Users\Luis Barbosa\.gradle\caches\transforms-3\85ad8dd81f3a3ee516e683551c4b2519\transformed\jetified-camera-extensions-1.3.0\AndroidManifest.xml:24:21-83
+16        </intent>
+17    </queries>
+18
+19    <application
+19-->C:\dev\Android\projects\myapp\app\src\main\AndroidManifest.xml:10:3-26:17
+20        android:allowBackup="true"
+20-->C:\dev\Android\projects\myapp\app\src\main\AndroidManifest.xml:11:11-37
+21        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+21-->[androidx.core:core:1.5.0] C:\Users\Luis Barbosa\.gradle\caches\transforms-3\646a0d29f049d41fa8537e44e2e47cd9\transformed\core-1.5.0\AndroidManifest.xml:24:18-86
+22        android:debuggable="true"
+23        android:icon="@mipmap/ic_launcher"
+23-->C:\dev\Android\projects\myapp\app\src\main\AndroidManifest.xml:12:11-45
+24        android:label="@string/app_name"
+24-->C:\dev\Android\projects\myapp\app\src\main\AndroidManifest.xml:13:11-43
+25        android:roundIcon="@mipmap/ic_launcher_round"
+25-->C:\dev\Android\projects\myapp\app\src\main\AndroidManifest.xml:14:11-56
+26        android:supportsRtl="true"
+26-->C:\dev\Android\projects\myapp\app\src\main\AndroidManifest.xml:15:11-37
+27        android:theme="@style/AppTheme" >
+27-->C:\dev\Android\projects\myapp\app\src\main\AndroidManifest.xml:16:11-42
+28        <activity
+28-->C:\dev\Android\projects\myapp\app\src\main\AndroidManifest.xml:19:5-25:16
+29            android:name="org.tensorflow.lite.codelabs.digitclassifier.MainActivity"
+29-->C:\dev\Android\projects\myapp\app\src\main\AndroidManifest.xml:19:15-43
+30            android:exported="true" >
+30-->C:\dev\Android\projects\myapp\app\src\main\AndroidManifest.xml:20:15-38
+31            <intent-filter>
+31-->C:\dev\Android\projects\myapp\app\src\main\AndroidManifest.xml:21:7-24:23
+32                <action android:name="android.intent.action.MAIN" />
+32-->C:\dev\Android\projects\myapp\app\src\main\AndroidManifest.xml:22:9-60
+32-->C:\dev\Android\projects\myapp\app\src\main\AndroidManifest.xml:22:17-58
+33
+34                <category android:name="android.intent.category.LAUNCHER" />
+34-->C:\dev\Android\projects\myapp\app\src\main\AndroidManifest.xml:23:9-68
+34-->C:\dev\Android\projects\myapp\app\src\main\AndroidManifest.xml:23:19-66
+35            </intent-filter>
+36        </activity>
+37        <activity
+37-->[com.github.divyanshub024:AndroidDraw:v0.1] C:\Users\Luis Barbosa\.gradle\caches\transforms-3\da69a3b7e8f827d7a3687c0dc6bc9fa2\transformed\jetified-AndroidDraw-v0.1\AndroidManifest.xml:12:9-14:66
+38            android:name="com.divyanshu.draw.activity.DrawingActivity"
+38-->[com.github.divyanshub024:AndroidDraw:v0.1] C:\Users\Luis Barbosa\.gradle\caches\transforms-3\da69a3b7e8f827d7a3687c0dc6bc9fa2\transformed\jetified-AndroidDraw-v0.1\AndroidManifest.xml:13:13-71
+39            android:theme="@style/Theme.AppCompat.NoActionBar" />
+39-->[com.github.divyanshub024:AndroidDraw:v0.1] C:\Users\Luis Barbosa\.gradle\caches\transforms-3\da69a3b7e8f827d7a3687c0dc6bc9fa2\transformed\jetified-AndroidDraw-v0.1\AndroidManifest.xml:14:13-63
+40
+41        <uses-library
+41-->[androidx.camera:camera-extensions:1.3.0] C:\Users\Luis Barbosa\.gradle\caches\transforms-3\85ad8dd81f3a3ee516e683551c4b2519\transformed\jetified-camera-extensions-1.3.0\AndroidManifest.xml:29:9-31:40
+42            android:name="androidx.camera.extensions.impl"
+42-->[androidx.camera:camera-extensions:1.3.0] C:\Users\Luis Barbosa\.gradle\caches\transforms-3\85ad8dd81f3a3ee516e683551c4b2519\transformed\jetified-camera-extensions-1.3.0\AndroidManifest.xml:30:13-59
+43            android:required="false" />
+43-->[androidx.camera:camera-extensions:1.3.0] C:\Users\Luis Barbosa\.gradle\caches\transforms-3\85ad8dd81f3a3ee516e683551c4b2519\transformed\jetified-camera-extensions-1.3.0\AndroidManifest.xml:31:13-37
+44
+45        <service
+45-->[androidx.camera:camera-camera2:1.3.0] C:\Users\Luis Barbosa\.gradle\caches\transforms-3\f0a6346a9f3619ee1812f358cbf59c71\transformed\jetified-camera-camera2-1.3.0\AndroidManifest.xml:24:9-33:19
+46            android:name="androidx.camera.core.impl.MetadataHolderService"
+46-->[androidx.camera:camera-camera2:1.3.0] C:\Users\Luis Barbosa\.gradle\caches\transforms-3\f0a6346a9f3619ee1812f358cbf59c71\transformed\jetified-camera-camera2-1.3.0\AndroidManifest.xml:25:13-75
+47            android:enabled="false"
+47-->[androidx.camera:camera-camera2:1.3.0] C:\Users\Luis Barbosa\.gradle\caches\transforms-3\f0a6346a9f3619ee1812f358cbf59c71\transformed\jetified-camera-camera2-1.3.0\AndroidManifest.xml:26:13-36
+48            android:exported="false" >
+48-->[androidx.camera:camera-camera2:1.3.0] C:\Users\Luis Barbosa\.gradle\caches\transforms-3\f0a6346a9f3619ee1812f358cbf59c71\transformed\jetified-camera-camera2-1.3.0\AndroidManifest.xml:27:13-37
+49            <meta-data
+49-->[androidx.camera:camera-camera2:1.3.0] C:\Users\Luis Barbosa\.gradle\caches\transforms-3\f0a6346a9f3619ee1812f358cbf59c71\transformed\jetified-camera-camera2-1.3.0\AndroidManifest.xml:30:13-32:89
+50                android:name="androidx.camera.core.impl.MetadataHolderService.DEFAULT_CONFIG_PROVIDER"
+50-->[androidx.camera:camera-camera2:1.3.0] C:\Users\Luis Barbosa\.gradle\caches\transforms-3\f0a6346a9f3619ee1812f358cbf59c71\transformed\jetified-camera-camera2-1.3.0\AndroidManifest.xml:31:17-103
+51                android:value="androidx.camera.camera2.Camera2Config$DefaultProvider" />
+51-->[androidx.camera:camera-camera2:1.3.0] C:\Users\Luis Barbosa\.gradle\caches\transforms-3\f0a6346a9f3619ee1812f358cbf59c71\transformed\jetified-camera-camera2-1.3.0\AndroidManifest.xml:32:17-86
+52        </service>
+53
+54        <meta-data
+54-->[com.google.android.gms:play-services-basement:17.6.0] C:\Users\Luis Barbosa\.gradle\caches\transforms-3\d22bd53f5cfa5b14a403c569f42c3748\transformed\jetified-play-services-basement-17.6.0\AndroidManifest.xml:23:9-25:69
+55            android:name="com.google.android.gms.version"
+55-->[com.google.android.gms:play-services-basement:17.6.0] C:\Users\Luis Barbosa\.gradle\caches\transforms-3\d22bd53f5cfa5b14a403c569f42c3748\transformed\jetified-play-services-basement-17.6.0\AndroidManifest.xml:24:13-58
+56            android:value="@integer/google_play_services_version" />
+56-->[com.google.android.gms:play-services-basement:17.6.0] C:\Users\Luis Barbosa\.gradle\caches\transforms-3\d22bd53f5cfa5b14a403c569f42c3748\transformed\jetified-play-services-basement-17.6.0\AndroidManifest.xml:25:13-66
+57    </application>
+58
+59</manifest>

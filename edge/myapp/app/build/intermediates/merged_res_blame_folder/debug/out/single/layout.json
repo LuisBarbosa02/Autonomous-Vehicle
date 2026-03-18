@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "org.tensorflow.lite.codelabs.digitclassifier.app-mergeDebugResources-22:/layout/activity_main.xml",
+        "source": "org.tensorflow.lite.codelabs.digitclassifier.app-main-25:/layout/activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Luis Barbosa\\.gradle\\daemon\\7.5.1\\org.tensorflow.lite.codelabs.digitclassifier.app-mergeDebugResources-22:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\Luis Barbosa\\.gradle\\daemon\\7.5.1\\org.tensorflow.lite.codelabs.digitclassifier.app-main-25:\\layout\\activity_main.xml"
+    }
+]
